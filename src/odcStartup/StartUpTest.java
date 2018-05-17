@@ -31,7 +31,7 @@ public class StartUpTest {
 	
 	WebDriver driver;
 	String baseUrl = "https://www.odc4.com/";
-	static String exePath = "C:\\Users\\Jonathon_Hicke\\Documents\\Selenium\\chromedriver.exe";
+	static String exePath = "C:\\Users\\Jonathon_Hicke\\Work Folders\\Documents\\Selenium\\chromedriver.exe";
 
 	String companyName = odcStartup.Constants.COMPANYNAME;
 	String userName = odcStartup.Constants.USERNAME;
@@ -83,9 +83,9 @@ public class StartUpTest {
 		log.info("Search screen QA start-");
 		SoftAssert sa = new SoftAssert();
 		ListIterator<WebElement> litr = null;
-		
-		testFile1.loadExcelFile("C:\\Users\\Jonathon_Hicke\\Documents\\Selenium\\excel\\exception.xlsx");
-		
+		String tempString;
+		testFile1.loadExcelFile("C:\\Users\\Jonathon_Hicke\\Work Folders\\Documents\\Selenium\\excel\\exception.xlsx");
+	
 		List<String> testData = testFile1.getTestData("Sheet1");
 		
 		log.info("Data from excel loaded");
@@ -106,9 +106,12 @@ public class StartUpTest {
 		 assertEquals(searchList.size(), testData.size());
 		 log.info("lists match size");
 		 log.info("comparing values");
+		
 		 litr= searchList.listIterator();
 		 for(String line : testData) {
-			sa.assertEquals(line, litr.next().getText().trim());
+			 tempString =  litr.next().getText().trim();
+			 log.trace("expected -"+ line + " actual -" + tempString);
+			sa.assertEquals(line,tempString);
 			 
 		 }
 		 sa.assertAll();
@@ -118,7 +121,7 @@ public class StartUpTest {
 	@Test(enabled=false)
 	public void excelTest() {
 		try {
-			testFile1.loadExcelFile("C:\\Users\\Jonathon_Hicke\\Documents\\Selenium\\excel\\exception.xlsx");
+			testFile1.loadExcelFile("C:\\Users\\Jonathon_Hicke\\Work Folders\\Documents\\Selenium\\excel\\exception.xlsx");
 			testFile1.getTestData("Sheet1");
 			log.info("Data from excel loaded");
 		} catch (Exception e) {

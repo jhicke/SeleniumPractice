@@ -100,6 +100,8 @@ public class StartUpTest {
 	@Test(priority=1)
 	public void search() throws Exception {
 		log.info("Search screen QA start-");
+		
+		//Soft Assert allows me to run all asserts without breaking the test. Returns expections at the end of test.
 		SoftAssert sa = new SoftAssert();
 		ListIterator<WebElement> litr = null;
 		String tempString;
@@ -128,6 +130,7 @@ public class StartUpTest {
 		 log.info("lists match size");
 		 log.info("comparing values");
 		
+		 //using Iterator to move through list.
 		 litr= searchList.listIterator();
 		 for(String line : testData) {
 			 tempString =  litr.next().getText().trim();
